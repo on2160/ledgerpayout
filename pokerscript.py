@@ -21,12 +21,16 @@ records = df.to_records(index=False)
 result = list(records)
 list = []
 for i in range(0,len(result)-1):
-    for j in range(i+1,len(result)):
-        if result[i][0] == result[j][0]:
-            result[i][1] = result[i][1] + result[j][1]
-            list.append(j)
+    if i not in list:
+        for j in range(i+1,len(result)):
+            if result[i][0] == result[j][0]:
+                result[i][1] = result[i][1] + result[j][1]
+                list.append(j)
 list.sort(reverse=True)
+print(list)
+print(result)
 for i in list:
+    print(i)
     result.pop(i)
 
 result.sort(key=lambda tup: tup[1])
