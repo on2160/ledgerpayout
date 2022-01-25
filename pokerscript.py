@@ -27,10 +27,7 @@ for i in range(0,len(result)-1):
                 result[i][1] = result[i][1] + result[j][1]
                 list.append(j)
 list.sort(reverse=True)
-print(list)
-print(result)
 for i in list:
-    print(i)
     result.pop(i)
 
 result.sort(key=lambda tup: tup[1])
@@ -48,9 +45,13 @@ losers = result[:index]
 winners = result[index:]
 
 print('losers')
-print(losers)
+for i in range(0,len(losers)):
+    print(losers[i][0],losers[i][1])
+print('\n')
 print('winners')
-print(winners)
+for i in range(0,len(winners)):
+    print(winners[i][0],winners[i][1])
+print('\n')
 
 lenw = len(winners)-1
 lenl = len(losers)
@@ -59,14 +60,14 @@ for i in range(0,lenl):
     debt = losers[i][1]
     while debt != 0:
         if -1*debt > winners[lenw][1]:
-            print(losers[i][0], 'pays', winners[lenw][0], '$', winners[lenw][1])
+            print(losers[i][0], 'pays', winners[lenw][0], '$', str(round(winners[lenw][1]/100,2)))
             debt = debt + winners[lenw][1]
             lenw = lenw - 1
         elif -1*debt == winners[lenw][1]:
-            print(losers[i][0], 'pays', winners[lenw][0], '$', -1*debt)
+            print(losers[i][0], 'pays', winners[lenw][0], '$', str(round(-1*debt/100,2)))
             debt = 0
             lenw = lenw - 1
         else:
-            print(losers[i][0], 'pays', winners[lenw][0], '$', -1*debt)
+            print(losers[i][0], 'pays', winners[lenw][0], '$', str(round(-1*debt/100,2)))
             winners[lenw][1] = winners[lenw][1] + debt
             debt = 0
